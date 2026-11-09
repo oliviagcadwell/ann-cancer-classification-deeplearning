@@ -47,3 +47,5 @@ The model caught 54 of 55 malignant tumors, with one false negative and one fals
 ## Tools
 
 Python, pandas, NumPy, scikit-learn, TensorFlow/Keras, matplotlib, seaborn
+
+Developed with AI assistance (Claude).

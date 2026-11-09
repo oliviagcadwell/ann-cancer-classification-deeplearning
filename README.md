@@ -18,6 +18,17 @@ Wolberg, W., Mangasarian, O., Street, N., & Street, W. (1993). Breast Cancer Wis
 4. **Reducing overfitting:** a baseline trained for 600 epochs shows validation loss rising as training loss falls. Early stopping on validation loss, then dropout (0.5), closes that gap.
 5. **Evaluation:** precision, recall, and a confusion matrix on the held-out test set, which is never used during training or tuning.
 
+## Results
+
+On the held-out test set of 143 tumors, the final model (dropout + early stopping) classified 141 correctly, for **98.6% accuracy**:
+
+| Class | Precision | Recall | Support |
+|---|---|---|---|
+| Benign | 0.99 | 0.99 | 88 |
+| Malignant | 0.98 | 0.98 | 55 |
+
+The model caught 54 of 55 malignant tumors, with one false negative and one false positive. In a screening context, the false negative (a malignant tumor called benign) is the more costly error. Lowering the decision threshold below 0.5 would trade some precision for higher recall on malignant cases.
+
 ## Tools
 
 Python, pandas, NumPy, scikit-learn, TensorFlow/Keras, matplotlib, seaborn

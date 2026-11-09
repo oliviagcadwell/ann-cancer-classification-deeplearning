@@ -18,6 +18,19 @@ Wolberg, W., Mangasarian, O., Street, N., & Street, W. (1993). Breast Cancer Wis
 4. **Reducing overfitting:** a baseline trained for 600 epochs shows validation loss rising as training loss falls. Early stopping on validation loss, then dropout (0.5), closes that gap.
 5. **Evaluation:** precision, recall, and a confusion matrix on the held-out test set, which is never used during training or tuning.
 
+### Which features matter most
+
+Correlation of each feature with a malignant diagnosis. Size and shape features (concave points, perimeter, radius, area) are the strongest predictors.
+
+![Feature correlations with malignancy](images/feature_correlations.png)
+
+### Fixing overfitting
+
+| Baseline: 600 epochs, no regularization | Final: dropout + early stopping |
+|---|---|
+| ![Baseline loss curves](images/loss_baseline.png) | ![Final loss curves](images/loss_final.png) |
+| Validation loss (orange) climbs after ~100 epochs while training loss keeps falling: the model is memorizing the training data. | Training and validation loss fall together and level off, and training stops before the model overfits. |
+
 ## Results
 
 On the held-out test set of 143 tumors, the final model (dropout + early stopping) classified 141 correctly, for **98.6% accuracy**:
@@ -26,6 +39,8 @@ On the held-out test set of 143 tumors, the final model (dropout + early stoppin
 |---|---|---|---|
 | Benign | 0.99 | 0.99 | 88 |
 | Malignant | 0.98 | 0.98 | 55 |
+
+![Confusion matrix](images/confusion_matrix.png)
 
 The model caught 54 of 55 malignant tumors, with one false negative and one false positive. In a screening context, the false negative (a malignant tumor called benign) is the more costly error. Lowering the decision threshold below 0.5 would trade some precision for higher recall on malignant cases.
 
